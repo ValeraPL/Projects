@@ -1,6 +1,7 @@
 arrayName = []
+tupleName = ()
 sizeArray = int(input("Введите размер массива >>>: "))
-info = """list: Просмотреть весь массив\nindex: Узнать индекс элемента\ncount: Узнать количество схожих элементов\npop: Удалить элемент по индексу\nclear: Отчистить весь массив"""
+info = """tuple: Поместить массив в кортеж\nlist: Просмотреть весь массив\nindex: Узнать индекс элемента\ncount: Узнать количество схожих элементов\npop: Удалить элемент по индексу\nclear: Отчистить весь массив"""
 
 for i in range(sizeArray):
 	arrayName.append(input("Введите имя >>>: "))
@@ -25,5 +26,8 @@ elif querry == "clear":
 elif querry == "list":
 	for index in arrayName:
 		print(index)
+elif querry == "tuple":
+	tupleName = arrayName
+	print("Массив помещен в кортеж")
 else:
 	print("Такой функции нет")
