@@ -1,12 +1,9 @@
 arrayName = []
 sizeArray = int(input("Введите размер массива >>>: "))
-i = 0
 info = """index: Узнать индекс элемента\ncount: Узнать количество схожих элементов\npop: Удалить элемент по индексу\nclear: Отчистить весь массив"""
 
-while i < sizeArray:
-	setName = input("Введите имя >>>: ")
-	arrayName.append(setName)
-	i += 1
+for i in range(sizeArray):
+	arrayName.append(input("Введите имя >>>: "))
 
 print(info)
 
