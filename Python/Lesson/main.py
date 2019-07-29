@@ -25,3 +25,5 @@ elif querry == "clear":
 elif querry == "list":
 	for index in arrayName:
 		print(index)
+else:
+	print("Такой функции нет")
