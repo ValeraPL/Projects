@@ -1,6 +1,6 @@
 arrayName = []
 sizeArray = int(input("Введите размер массива >>>: "))
-info = """index: Узнать индекс элемента\ncount: Узнать количество схожих элементов\npop: Удалить элемент по индексу\nclear: Отчистить весь массив"""
+info = """list: Просмотреть весь массив\nindex: Узнать индекс элемента\ncount: Узнать количество схожих элементов\npop: Удалить элемент по индексу\nclear: Отчистить весь массив"""
 
 for i in range(sizeArray):
 	arrayName.append(input("Введите имя >>>: "))
@@ -22,3 +22,6 @@ elif querry == "pop":
 elif querry == "clear":
 	arrayName.clear()
 	print("Весь массив отчищен")
+elif querry == "list":
+	for index in arrayName:
+		print(index)
