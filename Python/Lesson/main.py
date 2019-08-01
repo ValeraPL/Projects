@@ -13,6 +13,7 @@ def pop():
 	request = int(input("Введите индекс элемента >>>: "))
 	print("Имя:", arrayName[request], "Удалить[Y/N]")
 	choice = input(">>>: ")
+	
 	if choice == "y":
 		arrayName.pop(request)
 		print("Удалено")
@@ -31,6 +32,15 @@ def tup():
 	tupleName = arrayName
 	print("Массив помещен в кортеж")
 
+def writeFile():
+	nameFile = input("Введите название файла >>>: ")
+	file = open(nameFile, "w")
+
+	for i in arrayName:
+		file.write("Имя: " + i + "\n")
+
+	print("Записано")
+
 def info():
 	commands = """
 		tuple: Поместить массив в кортеж
@@ -40,6 +50,7 @@ def info():
 		pop: Удалить элемент по индексу
 		create: Создать массив
 		clear: Отчистить весь массив
+		write: Записать массив в файл
 	"""
 
 	print(commands)
@@ -70,6 +81,9 @@ def main():
 		main()
 	elif querry == "create":
 		createArray()
+	elif querry == "write":
+		writeFile()
+		main()
 	elif querry == "exit":
 		exit(0)
 	else:
