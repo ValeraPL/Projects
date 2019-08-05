@@ -1,10 +1,12 @@
 import os
 
+"""Инициализация массивов"""
 arrayName = []
 tupleName = ()
 dictName = {}
 
 def index():
+	"""Запрашивает имя и выводит индекс элемента"""
 	request = input("index: Введите имя >>>: ")
 	
 	try:
@@ -16,6 +18,7 @@ def index():
 		index()
 
 def count():
+	"""Запрашивает имя выводит количество одинаковых элементов"""
 	request = input("count: Введите имя >>>: ")
 
 	if arrayName.count(request) == 0:
@@ -27,6 +30,7 @@ def count():
 		main()
 
 def pop():
+	"""Запрашивает индекс и удаляет элемент"""
 	request = int(input("pop: Введите индекс элемента >>>: "))
 
 	try:
@@ -46,6 +50,7 @@ def pop():
 		pop()
 
 def clear():
+	"""Отчистка массива"""
 	choice = input("clear: Отчистить массив[Y/N]? >>>: ")
 
 	if choice == "y":
@@ -57,16 +62,19 @@ def clear():
 		main()
 
 def list():
+	"""Вывод элементов"""
 	os.system("clear")
 	for i in arrayName:
 		print(i)
 
 def tup():
+	"""Помещение в кортеж"""
 	os.system("clear")
 	tupleName = arrayName
 	print("Массив помещен в кортеж")
 
 def writeFile():
+	"""Запрашивает имя файла и и записывает массив в файл"""
 	writeFileName = input("write: Введите название файла >>>: ")
 	wFile = open(writeFileName, "w")
 
@@ -80,12 +88,14 @@ def writeFile():
 	wFile.close()
 
 def readFile():
+	"""Запрашивает имя файла и выводит содержимое"""
 	readFileName = input("read: Введите название файла >>>: ")
 	rFile = open(readFileName, "r")
 	handle = rFile.read()
 	print(handle)
 
 def info():
+	"""Выводит все комманды"""
 	commands = """
 		tuple: Поместить массив в кортеж
 		list: Просмотреть весь массив
@@ -101,6 +111,7 @@ def info():
 	print(commands)
 
 def main():
+	"""Запрашивает комманду и вызывает вышеперечисленные функции"""
 	querry = input(">>>: ")
 
 	if querry == "index":
@@ -150,6 +161,7 @@ def main():
 		main()
 
 def createArray():
+	"""Запрашивает размер массива, элементы"""
 	os.system("clear")
 
 	sizeArray = int(input("Введите размер массива >>>: "))
