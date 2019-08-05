@@ -2,27 +2,49 @@ arrayName = []
 tupleName = ()
 
 def index():
-	request = input("Введите имя >>>: ")
-	print("Имя:", request, ",", "Индекс:", arrayName.index(request))
+	request = input("index: Введите имя >>>: ")
+	
+	try:
+		print("Имя:", request, ",", "Индекс:", arrayName.index(request))
+		main()
+	except ValueError as e:
+		print("Имя:", request, "не найдено")
+		index()
 
 def count():
-	request = input("Введите имя >>>: ")
-	print("Имя:", request, ",", "Количество:", arrayName.count(request))
+	request = input("count: Введите имя >>>: ")
 
-def pop():
-	request = int(input("Введите индекс элемента >>>: "))
-	print("Имя:", arrayName[request], "Удалить[Y/N]")
-	choice = input(">>>: ")
-	
-	if choice == "y":
-		arrayName.pop(request)
-		print("Удалено")
-	elif choice == "n":
+	if arrayName.count(request) == 0:
+		print("Имя:", request, "не найдено")
+		count()
+	else:
+		print("Имя:", request, ",", "Количество:", arrayName.count(request))
 		main()
 
+def pop():
+	request = int(input("pop: Введите индекс элемента >>>: "))
+
+	try:
+		print("Имя:", arrayName[request], "Удалить[Y/N]")
+		choice = input("pop: >>>: ")
+
+		if choice == "y":
+			arrayName.pop(request)
+			print("Удалено")
+		elif choice == "n":
+			main()
+	except IndexError as e:
+		print("Индекс:", request, "не найдено")
+		pop()
+
 def clear():
-	arrayName.clear()
-	print("Весь массив отчищен")
+	choice = input("clear: Отчистить массив[Y/N]? >>>: ")
+
+	if choice == "y":
+		arrayName.clear()
+		print("Весь массив отчищен")
+	elif choice == "n":
+		main()
 
 def list():
 	for i in arrayName:
@@ -33,13 +55,21 @@ def tup():
 	print("Массив помещен в кортеж")
 
 def writeFile():
-	nameFile = input("Введите название файла >>>: ")
-	file = open(nameFile, "w")
+	writeFileName = input("write: Введите название файла >>>: ")
+	wFile = open(writeFileName, "w")
 
 	for i in arrayName:
-		file.write("Имя: " + i + "\n")
+		wFile.write("Имя: " + i + "\n")
 
 	print("Записано")
+
+	wFile.close()
+
+def readFile():
+	readFileName = input("read: Введите название файла >>>: ")
+	rFile = open(readFileName, "r")
+	handle = rFile.read()
+	print(handle)
 
 def info():
 	commands = """
@@ -51,6 +81,7 @@ def info():
 		create: Создать массив
 		clear: Отчистить весь массив
 		write: Записать массив в файл
+		read: Прочитать файл
 	"""
 
 	print(commands)
@@ -83,6 +114,9 @@ def main():
 		createArray()
 	elif querry == "write":
 		writeFile()
+		main()
+	elif querry == "read":
+		readFile()
 		main()
 	elif querry == "exit":
 		exit(0)
