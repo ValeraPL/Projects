@@ -1,157 +1,53 @@
 import os
+import functions as func
 
 """Инициализация массивов"""
 arrayName = []
 tupleName = ()
 dictName = {}
 
-def index():
-	"""Запрашивает имя и выводит индекс элемента"""
-	request = input("index: Введите имя >>>: ")
-	
-	try:
-		print("Имя:", request, ",", "Индекс:", arrayName.index(request))
-		main()
-	except ValueError as e:
-		os.system("clear")
-		print("Имя:", request, "не найдено")
-		index()
-
-def count():
-	"""Запрашивает имя выводит количество одинаковых элементов"""
-	request = input("count: Введите имя >>>: ")
-
-	if arrayName.count(request) == 0:
-		os.system("clear")
-		print("Имя:", request, "не найдено")
-		count()
-	else:
-		print("Имя:", request, ",", "Количество:", arrayName.count(request))
-		main()
-
-def pop():
-	"""Запрашивает индекс и удаляет элемент"""
-	request = int(input("pop: Введите индекс элемента >>>: "))
-
-	try:
-		print("Имя:", arrayName[request], "Удалить[Y/N]")
-		choice = input("pop: >>>: ")
-
-		if choice == "y":
-			arrayName.pop(request)
-			os.system("clear")
-			print("Удалено")
-		elif choice == "n":
-			os.system("clear")
-			main()
-	except IndexError as e:
-		os.system("clear")
-		print("Индекс:", request, "не найдено")
-		pop()
-
-def clear():
-	"""Отчистка массива"""
-	choice = input("clear: Отчистить массив[Y/N]? >>>: ")
-
-	if choice == "y":
-		os.system("clear")
-		arrayName.clear()
-		print("Весь массив отчищен")
-	elif choice == "n":
-		os.system("clear")
-		main()
-
-def list():
-	"""Вывод элементов"""
-	os.system("clear")
-	for i in arrayName:
-		print(i)
-
-def tup():
-	"""Помещение в кортеж"""
-	os.system("clear")
-	tupleName = arrayName
-	print("Массив помещен в кортеж")
-
-def writeFile():
-	"""Запрашивает имя файла и и записывает массив в файл"""
-	writeFileName = input("write: Введите название файла >>>: ")
-	wFile = open(writeFileName, "w")
-
-	for i in arrayName:
-		wFile.write("Имя: " + i + "\n")
-
-	os.system("clear")
-
-	print("Записано")
-
-	wFile.close()
-
-def readFile():
-	"""Запрашивает имя файла и выводит содержимое"""
-	readFileName = input("read: Введите название файла >>>: ")
-	rFile = open(readFileName, "r")
-	handle = rFile.read()
-	print(handle)
-
-def info():
-	"""Выводит все комманды"""
-	commands = """
-		tuple: Поместить массив в кортеж
-		list: Просмотреть весь массив
-		index: Узнать индекс элемента
-		count: Узнать количество схожих элементов
-		pop: Удалить элемент по индексу
-		create: Создать массив
-		clear: Отчистить весь массив
-		write: Записать массив в файл
-		read: Прочитать файл
-	"""
-
-	print(commands)
-
 def main():
-	"""Запрашивает комманду и вызывает вышеперечисленные функции"""
+	"""Запрашивает комманду и вызывает функции из модуля functions"""
 	querry = input(">>>: ")
 
 	if querry == "index":
 		os.system("clear")
-		index()
+		func.index(arrayName)
 		main()
 	elif querry == "count":
 		os.system("clear")
-		count()
+		func.count(arrayName)
 		main()
 	elif querry == "pop":
 		os.system("clear")
-		pop()
+		func.pop(arrayName)
 		main()
 	elif querry == "clear":
 		os.system("clear")
-		clear()
+		func.clear(arrayName)
 		main()
 	elif querry == "list":
 		os.system("clear")
-		list()
+		func.list(arrayName)
 		main()
 	elif querry == "tuple":
 		os.system("clear")
-		tup()
+		func.tup(arrayName)
 		main()
 	elif querry == "info":
 		os.system("clear")
-		info()
+		func.info()
 		main()
 	elif querry == "create":
 		os.system("clear")
 		createArray()
 	elif querry == "write":
 		os.system("clear")
-		writeFile()
+		func.writeFile(arrayName)
 		main()
 	elif querry == "read":
 		os.system("clear")
-		readFile()
+		func.readFile()
 		main()
 	elif querry == "exit":
 		os.system("clear")
@@ -162,9 +58,11 @@ def main():
 
 def createArray():
 	"""Запрашивает размер массива, элементы"""
-	os.system("clear")
-
-	sizeArray = int(input("Введите размер массива >>>: "))
+	try:
+		sizeArray = int(input("Введите размер массива >>>: "))
+	except ValueError:
+		print("Вы должны ввести число")
+		createArray()
 
 	for i in range(sizeArray):
 		arrayName.append(input("Введите имя >>>: "))
